@@ -1,0 +1,54 @@
+---
+# environment Name
+env_name: oah-vm
+#GUI Flag
+oah_vm_gui: true
+# `vagrant_box` .
+#vagrant_box: "ubuntu/xenial64"
+vagrant_box: "bento/ubuntu-16.04"
+vagrant_user: ubuntu
+oah_env_user: ubuntu
+oah_user: oahdev
+
+
+# If you need to run multiple instances of Openhack VM, set a unique hostname,
+# machine name, and IP address for each instance.
+vagrant_hostname: oah-vm.dev
+vagrant_machine_name: oah-vm
+#vagrant_ip: 192.168.88.88
+vagrant_ip: 0.0.0.0
+
+# Allow OAH VM to be accessed via a public network interface on your host.
+# Vagrant boxes are insecure by default, so be careful. You've been warned!
+# See: https://docs.vagrantup.com/v2/networking/public_network.html
+vagrant_public_ip: ""
+
+# A list of synced folders, with the keys 'local_path', 'destination', 'id', and
+# a 'type' of [nfs|rsync|smb] (leave empty for slow native shares).
+vagrant_synced_folders: []
+#   # The first synced folder will be used for the default Drupal installation, if
+#   # build_makefile: is 'true'.
+#   - local_path: ~/.oah/data
+#     destination: /home/{{ oah_user }}/.oah/data
+#     type: nfs
+#     create: true
+
+  # - local_path: ~/oah-sites/{{ vagrant_machine_name }}
+  #   destination: /var/www/{{ vagrant_machine_name }}
+  #   type: nfs
+  #   create: true
+
+# Memory and CPU to use for this VM.
+vagrant_memory: 1024
+vagrant_cpus: 2
+
+# # The web server software to use. Can be either 'apache' or 'nginx'.
+# oahvm_webserver: apache
+
+
+
+#
+
+# Cron jobs are added to the root user's crontab. Keys include name (required),
+# minute, hour, day, weekday, month, job (required), and state.
+oahvm_cron_jobs: []

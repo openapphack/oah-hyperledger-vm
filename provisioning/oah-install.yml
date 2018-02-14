@@ -1,0 +1,29 @@
+---
+- hosts: all
+
+  vars:
+  - ove_command: install
+
+  vars_files:
+    - ../oah-config.yml
+
+  pre_tasks:
+    - include: tasks/init-debian.yml
+      when: ansible_os_family == 'Debian'
+
+  roles:
+    # Essential roles.
+    - oah.oah
+    - oah.firewall
+    - oah.git
+
+    # Roles for security and stability on production.
+    - { role: oah.security, when: extra_security_enabled }
+
+  tasks:
+    - include: tasks/sshd.yml
+    - include: tasks/extras.yml
+    - include: tasks/www.yml
+    - include: tasks/apparmor.yml
+      when: ansible_os_family == 'Debian'
+    - include: tasks/cron.yml
